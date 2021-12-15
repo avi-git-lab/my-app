@@ -1,13 +1,8 @@
-pipeline{
-    agent any
-    triggers {
-      pollSCM '* * * * *'
+node{
+    stage('SCM Checkout'){
+        git 'https://github.com/avi-git-lab/my-app'
     }
-    stages{
-        stage("SCM"){
-            steps{
-               echo "job ran.....again and again"
-            }
-        }
+    stage('Compile-Package'){
+        sh 'mvn package'
     }
 }
